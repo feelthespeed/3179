@@ -20,7 +20,7 @@
     },
     {
       "data": {
-        "url": "/data/2022_m.csv"
+        "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week9Homework/data/2022_m.csv"
       },
       "mark": {"type": "circle", "tooltip": {"content": "data"}},
       "encoding": {

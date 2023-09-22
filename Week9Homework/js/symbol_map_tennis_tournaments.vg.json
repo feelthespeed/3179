@@ -4,6 +4,17 @@
   "height": 1000,
   "params": [
     {
+      "name": "matches_above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 20,
+        "max": 110,
+        "step": 30,
+        "name": "Minimum Matches Played: "
+      }
+    },
+    {
       "name": "surface_selection",
       "bind": {
         "input": "select",
@@ -55,12 +66,15 @@
       },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week9Homework/data/2022_m.csv"
+        "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week9Homework/data/2022_m_small_rev.csv"
       },"transform": [
         
         {
           "window": [{"op": "rank", "as": "Rank"}],
           "sort": [{"field": "Tournament"}]
+        },
+        {
+          "filter": "datum.Count > matches_above"
         },
         {
           "filter": "surface_selection == null || datum.Surface == surface_selection"
@@ -71,7 +85,10 @@
       "encoding": {
         "longitude": {"field": "Lng", "type": "quantitative"},
         "latitude": {"field": "Lat", "type": "quantitative"},
-        "size": {"value": 100},
+        "size": {"field": "Count", "type": "quantitative",
+        "scale": {"type": "linear", "zero": false, "range": [70, 500]}
+      }
+        ,
         "color": {
           "field": "Surface",
           "type": "nominal",
@@ -95,7 +112,8 @@
           {"field": "Date", "type": "nominal"},
           {"field": "Series", "type": "nominal"},
           {"field": "Court", "type": "nominal"},
-          {"field": "Surface", "type": "nominal"}
+          {"field": "Surface", "type": "nominal"},
+          {"field": "Count", "title":"Matches Played", "type": "quantitative"}
         ]
       }
     }

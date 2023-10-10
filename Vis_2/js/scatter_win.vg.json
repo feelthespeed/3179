@@ -1,0 +1,51 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A scatterplot showing horsepower and miles per gallons for various cars.",
+    "data": {"url": "https://raw.githubusercontent.com/feelthespeed/3179/main/data/Win_Loss.csv"},
+    "params": [
+      {
+        "name": "titles_above",
+        "value": 65,
+        "bind": {
+          "input": "range",
+          "min": 20,
+          "max": 105,
+          "step": 5,
+          "name": "Minimum Career Titles: "
+        }
+      },
+      {
+        "name": "surface_select",
+        "value": "Overall",
+        "bind": {
+          "input": "select",
+          "options": [
+            "Overall",
+            "Clay",
+            "Hard",
+            "Grass"
+          ],
+          "labels": ["Overall",
+            "Clay",
+            "Hard",
+            "Grass"],
+          "name": "Surface: "
+        }
+      }
+    ],
+    "transform": [{"filter": "datum['Career Titles'] > titles_above"}],
+    "mark": "point",
+    "encoding": {
+      "x": {"field": "Career Loss", "type": "quantitative"},
+      "y": {"field": "Career Win", "type": "quantitative"},
+      "color": {"field": "Player"},
+      "tooltip": [
+        {"field": "Player"},
+        {"field": "Career Index", "title":"Career Index (W/L Ratio)" },
+        {"field": "Career Titles"},
+        {"field": "Career Win"},
+        {"field": "Career Loss"}
+      ]
+    }
+  }
+  

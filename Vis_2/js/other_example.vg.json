@@ -1,0 +1,32 @@
+{
+    "width": 300,
+    "height": 200,
+    "data": {"url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week10Homework/Mens_Tennis_Grand_Slam_Winner.csv"},
+    "transform": [
+      {
+        "aggregate": [{"op": "count", "as": "numWins"}],
+        "groupby": ["YEAR", "WINNER"]
+      },
+      {
+        "calculate": "indexof(['Novak Djokovic', 'Rafael Nadal', 'Roger Federer'], datum.WINNER) === -1 ? 'Other' : datum.WINNER",
+        "as": "WinnerGroup"
+      }
+    ],
+    "mark": "area",
+    "encoding": {
+      "x": {
+        "timeUnit": "yearmonth",
+        "field": "YEAR",
+        "axis": {"format": "%Y"}
+      },
+      "y": {
+        "aggregate": "sum",
+        "field": "numWins"
+      },
+      "color": {
+        "field": "WinnerGroup",
+        "type": "nominal",
+        "scale": {"scheme": "category10"} 
+    }
+  }
+  

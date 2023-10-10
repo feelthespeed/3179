@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>The Tennis Big-3 | Luigi Cortez</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles_w10.css" media="all">
+
+
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g" id="hero">
+      <div class="pure-u-5-6">
+        <h1>The Tennis Big-3</h1>
+        <p style="text-align: center;">The tennis Big-3 and their performances around the world</p>
+      </div>
+      <div class="pure-u-1-6" id="major">
+        <img src="https://media.nbcchicago.com/2022/09/federer-nadal-djokovic-1.jpg?quality=85&strip=all&fit=1200%2C675" alt="Header Image">
+    
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+             <!-- pure grid group -->
+             <div class="pure-g" >
+              <div class="pure-u-1-1" id="top">
+                Djokovic, Nadal and Federer are the three greatest all-time record holders for grand slams.
+                <br> Pete Sampras is closest to their record, but has six less titles
+                <div id="vis4" class="vis-container" ></div>
+              </div>
+            </div>
+            <!-- end pure grid group -->
+
+
+        <!-- pure grid group -->
+        <div class="pure-g">
+          <div class="pure-u-3-4" >
+            <div id="vis2" class="vis-container"></div>
+          </div>
+          <div class="pure-u-1-4">
+            <div class="description description-right" >
+              <h2>A Global Sport</h2>
+              <p>Tennis is played all around the world on a variety of surfaces including Grass, Clay and Hard Court. Carpet courts were also used in the ATP Tour until 2009. Of the grand slams (Australian Open, French Open, Wimbledon and US Open), the Australian Open and US Open use Hard court, with Clay used for the French Open and Grass for Wimbledon. </p>
+            </div>
+          </div>
+    
+        </div>
+        <!-- end pure grid group -->
+
+           <!-- pure grid group -->
+           <div class="pure-g">
+            <div class="pure-u-2-3">
+              <div id="vis6" class="vis-container"></div>
+               (Scatter Plot TBD)
+            </div>
+          <div class="pure-u-1-3">
+            <div class="description description-right">
+              <h2>Surface Champion</h2>
+              <p>Despite their dominance across tournaments and grand slams, each of them had particular strengths on different surfaces. Nadal, for example was the undisputed clay court king. Across all surfaces, Djokovic retains the best all-time win-loss record.</p>
+            </div>
+          </div>
+          </div>
+          <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+     
+      <div class="pure-u-2-3">
+        <div id="vis1" class="vis-container"></div>
+      </div>
+       
+
+      <div class="pure-u-1-3">
+        <div class="description description-right">
+          <h2>Totally Dominant</h2>
+          <p>Since 2003, three sporting greats have dominated the world of tennis: Roger Federer, Rafael Nadal and Novak Djokovic. Their presence at the top of the tennis world has been a constant motivator for rivals around the world. In more recent times, however, one of them has extended their lead over the rest. </p>
+        </div>
+      </div>
+     
+    
+
+    </div>
+    <!-- end pure grid group -->
+
+       <!-- pure grid group -->
+       <div class="pure-g">
+     
+        <div class="pure-u-2-3">
+          <div id="vis3" class="vis-container"></div>
+        </div>
+         
+  
+        <div class="pure-u-1-3">
+          <div class="description description-right">
+            <h2>A Constant Presence</h2>
+            <p>The Big 3 have not claimed at least one grand slam in a calendar year since 2003. Federer went on the greatest winning streak from 2003 to 2007, winning at least two grand slam titles for four consectuive years </p>
+          </div>
+        </div>
+  
+       
+      
+  
+      </div>
+      <!-- end pure grid group -->
+
+
+        <!-- pure grid group -->
+        <div class="pure-g">
+     
+          <div class="pure-u-2-3">
+            <div id="vis5" class="vis-container"></div>
+          </div>
+           
+    
+          <div class="pure-u-1-3">
+            <div class="description description-right">
+              <h2>Claiming The Majority</h2>
+              <p>From the year 2000 onwards, Djokovic, Federer and Nadal have claimed the majority of tennis grand slam titles awarded to the present day </p>
+            </div>
+          </div>
+    
+         
+        
+    
+        </div>
+        <!-- end pure grid group -->
+    
+  
+
+    <!-- pure grid group -->
+    <!-- <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="description description-left">
+          <h2>Three Equal Columns</h2>
+          <p>Using all three columns without merging. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat
+            sed. Egestas purus viverra accumsan in nisl. Egestas purus viverra accumsan in nisl.</p>
+        </div>
+      </div>
+      <div class="pure-u-1-3">
+        <div id="vis4" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-3" style="width: 31.5%;">
+        <div id="vis3" class="vis-container" style="margin-left: 15px;"></div>
+      </div>
+
+    </div> -->
+    <!-- end pure grid group -->
+
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p style="text-align: center">While Federer and Nadal have ended their reign <br> at the top, Djokovic seems as powerful as ever. <br> Will anyone be able to topple him?</p>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>Luigi Cortez | FIT3179 - Data Visualisation 2 | Data from Kaggle</p>
+      </div>
+    </div>
+
+
+  </div> <!-- end page -->
+
+  <script type="text/javascript">
+    var specVis1 = "js/line_chart_cumulative_wins.vg.json";
+    // Change below for final
+    // var specVis1 = "js/symbol_map_tennis_tournaments.vg.json";
+    var specVis2 = "js/symbol_map_tennis_tournaments_zoom.vg.json";
+    var specVis3 = "js/bubble_plot.vg.json";
+    var specVis4 = "js/hero_bar.vg.json";
+    var specVis5 = "js/donut_basis_vg.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false });
+
+    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
+</body>
+
+</html>

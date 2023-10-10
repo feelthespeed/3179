@@ -1,0 +1,39 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/data/Mens_Tennis_Grand_Slam_Winner_pivot.csv"
+    },
+    "width": "container",
+    "height": 400,
+    "encoding": {
+      "x": {"field": "Year", "type": "temporal", "axis": {"grid": true}},
+      "y": {"field": "Player", "type": "nominal", "axis": {"title": ""}},
+      "size": {
+        "field": "Slams",
+        "type": "quantitative",
+        "title": "Grand Slam Wins Per Year",
+        "legend": {"clipHeight": 30, "values": [1, 2, 3], "format": "d"},
+        "scale": {"range": [0, 500]}
+      },
+      "color": {"field": "Player", "type": "nominal", "legend": null},
+      "tooltip": [
+        {
+          "field": "Year",
+          "type": "temporal",
+          "title": "Year",
+          "timeUnit": "year"
+        },
+        {"field": "Slams", "type": "quantitative", "title": "Grand Slams"}
+      ]
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "circle",
+          "opacity": 0.8,
+          "stroke": "black",
+          "strokeWidth": 1
+        }
+      }
+    ]
+  }

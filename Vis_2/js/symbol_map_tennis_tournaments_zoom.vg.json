@@ -1,0 +1,150 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "params": [
+    {
+      "name": "matches_above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 20,
+        "max": 110,
+        "step": 30,
+        "name": "Minimum Matches Played: "
+      }
+    },
+    {
+      "name": "zoom_level",
+      "value": 100,
+      "bind": {
+        "input": "range",
+        "min": 100,
+        "max": 2000,
+        "step": 20,
+        "name": "Zoom: "
+      }
+    },
+    {
+      "name": "center_to",
+      "value": [0, 0],
+      "bind": {
+        "input": "select",
+        "options": [
+          [0, 0],
+          [145, -37.95],
+          [2.3522, 48.8566],
+          [-0.2206, 51.4183 ],
+          [-74.0060, 40.7128],
+          [126.9918, 37.5519],
+          [-58.3816, -34.6037]
+        ],
+        "labels": ["Centre", "Melbourne (Australian Open)", "Roland Garros (French Open)", "Wimbledon", "New York (US Open)", "Seoul", "Buenos Aires"],
+        "name": "Map Centre: "
+      }
+    },
+    {
+      "name": "surface_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Clay",
+          "Hard",
+          "Grass"
+        ],
+        "labels": [
+          "Show All",
+          "Clay",
+          "Hard Court",
+          "Grass"
+        ],
+        "name": "Court Surface: "
+      }
+    }
+  ],
+  "title": "ATP Tennis Tournaments 2022",
+  "projection": {"type": "equalEarth", "scale": {"expr": "zoom_level"}, "center": {"expr": "center_to"}},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week9Homework/js/ocean_topojson.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      }, 
+      "mark": {"type": "geoshape", "fill": "#e2f9fe"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week9Homework/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },{
+      "data": {
+        "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week9Homework/js/WorldMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+    },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week9Homework/js/ne_110m_wgs84_bounding_box.json",
+          "format": {"type": "topojson", "feature": "ne_110m_wgs84_bounding_box"}
+        },
+        "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+      },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week9Homework/data/2022_m_small_rev.csv"
+      },"transform": [
+        
+        {
+          "window": [{"op": "rank", "as": "Rank"}],
+          "sort": [{"field": "Tournament"}]
+        },
+        {
+          "filter": "datum.Count > matches_above"
+        },
+        {
+          "filter": "surface_selection == null || datum.Surface == surface_selection"
+        }
+        
+      ],
+      "mark": {"type": "circle", "tooltip": {"content": "data"}},
+      "encoding": {
+        "longitude": {"field": "Lng", "type": "quantitative"},
+        "latitude": {"field": "Lat", "type": "quantitative"},
+        "size": {"field": "Count", "type": "quantitative",
+        "scale": {"type": "linear", "zero": false, "range": [70, 500]}
+      }
+        ,
+        "color": {
+          "field": "Surface",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Clay",
+              "Hard",
+              "Grass"
+            ],
+            "range": [
+              "#ff7f00",
+              "#377eb8",
+              "green"
+            ]
+          }
+        },
+        "tooltip": [
+          {"field": "ATP", "title": "Event No.", "type": "quantitative"},
+          {"field": "Location", "type": "nominal"},
+          {"field": "Tournament", "type": "nominal"},
+          {"field": "Date", "type": "nominal"},
+          {"field": "Series", "type": "nominal"},
+          {"field": "Court", "type": "nominal"},
+          {"field": "Surface", "type": "nominal"},
+          {"field": "Count", "title":"Matches Played", "type": "quantitative"}
+        ]
+      }
+    }
+  ]
+}

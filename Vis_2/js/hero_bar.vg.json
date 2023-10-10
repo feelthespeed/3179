@@ -1,0 +1,52 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": 200,
+    "data": {
+      "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week10Homework/Mens_Tennis_Grand_Slam_Winner.csv"},
+      "transform": [
+    {
+      "aggregate": [{
+       "op": "count",
+       "field": "WINNER",
+       "as": "WOO"
+      }],
+      "groupby": ["WINNER"]
+    },
+    {"filter": "datum.WOO > wins_above"}
+  ],
+    "mark": "bar",
+     "params": [
+    {
+      "name": "wins_above",
+      "value": 14,
+      "bind": {
+        "input": "range",
+        "min": 5,
+        "max": 14,
+        "step": 1,
+        "name": "Wins: "
+      }
+    }
+  ],
+    "encoding": {
+      "y": {
+        "field": "WINNER",
+        "type": "nominal",
+        "title": "Player",
+        "sort": "-x"
+      },
+      "x": {
+         "field": "WOO",
+        "type": "quantitative",
+        "title": "Grand Slam Wins"
+
+      },
+      "color": {
+        "field": "WINNER",
+        "type": "nominal",
+        "legend": null
+    }
+    }
+  }
+  

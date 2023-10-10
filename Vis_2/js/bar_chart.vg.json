@@ -1,0 +1,33 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+    "data": {
+      "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week10Homework/Mens_Tennis_Grand_Slam_Winner.csv"},
+    "mark": "bar",
+    "transform": [{
+        "filter": {
+          "field": "WINNER",
+          "oneOf": ["Novak Djokovic", "Rafael Nadal", "Roger Federer"]
+        }
+      }],
+    "encoding": {
+      "y": {
+        "field": "WINNER",
+        "type": "nominal",
+        "title": "Player"
+      },
+      "x": {
+         "aggregate": "count",
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "",
+        "type": "nominal",
+        "scale": {
+          "domain": ["sun", "fog", "drizzle", "rain", "snow"],
+          "range": ["#e7ba52", "#c7c7c7", "#aec7e8", "#1f77b4", "#9467bd"]
+        },
+        "title": "Weather type"
+      }
+    }
+  }

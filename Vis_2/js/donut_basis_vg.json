@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A simple donut chart with embedded data.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Week10Homework/Mens_Tennis_Grand_Slam_Winner.csv"
+  },
+  "transform": [
+    {
+      "filter":
+        "datum.YEAR > year_above"
+    },
+    {
+      "calculate": "indexof(['Novak Djokovic', 'Rafael Nadal', 'Roger Federer'], datum.WINNER) === -1 ? 'Other' : datum.WINNER",
+      "as": "WinnerGroup"
+    }
+    ],
+  "params": [
+    {
+      "name": "year_above",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 1950,
+        "max": 2022,
+        "step": 1,
+        "name": "From Year: "
+      }
+    }
+  ],
+  "mark": {"type": "arc", "innerRadius": 50},
+  "encoding": {
+    "theta": {"aggregate": "count", "field": "WINNER", "type": "quantitative"},
+    "color": {"field": "WinnerGroup", "type": "nominal", "title": "Players"},
+     "tooltip": [{
+    "field": "WINNER", "type": "nominal", "title": "Player"},
+    {
+    "aggregate": "count", "field": "WINNER", "type": "quantitative", "title": "Grand Slams"}
+  ]
+  },
+  "config": {
+  "style": {
+    "cell": {
+      "stroke": "transparent"
+    }
+  }
+}
+
+}

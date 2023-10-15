@@ -1,0 +1,131 @@
+body *{
+  font-family:  'Cairo', 'Onest', 'Open Sans', sans-serif;
+  font-weight: 400
+}
+
+p{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+h1 {
+  font-weight: 1000;
+  font-family: 'Bebas Neue', sans-serif;
+  text-align: center;
+  color: #1592D1;
+  font-size: 60px;
+}
+
+h2 {
+  font-weight: 1000;
+  font-family: 'Bebas Neue', sans-serif;
+  color: #1592D1;
+  font-size: 40px;
+  margin-bottom: 5px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+.page {
+  width: 1100px;
+  background-color: #d5e0e6;
+  margin: auto;
+  padding: 50px;
+  padding-top: 35px;
+}
+
+#top {
+  text-align: center;
+  padding-top: 25px;
+  font-family: 'Cairo', 'Onest', 'Open Sans', sans-serif;
+}
+
+.vis-container {
+  width: 90%;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.description h2,
+h1 {
+  margin-top: 0px;
+}
+
+.description-right {
+  padding-left: 0px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  text-align: "center";
+}
+
+.description-left {
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  text-align: "center"
+}
+
+.description-above {
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-left: 30px;
+  text-align: "center"
+}
+
+.pure-g {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+}
+
+.small-font {
+  font-size: 14px;
+  padding-left: 20px
+}
+
+#hero {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#major {
+  padding-right: 20px;
+
+}
+
+.above-p {
+  /* margin-right: 90px; */
+  margin-right: 30px;
+}
+
+span {
+  font-weight: 700;
+}
+
+.nadal {
+  color: #F25757;
+}
+
+.federer {
+  color: #142A8C;
+}
+
+.djokovic {
+  color: #63B4D1;
+}
+
+.vega-bind-name {
+  font-weight: 600;
+}

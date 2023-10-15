@@ -1,0 +1,155 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/data/Mens_Tennis_Grand_Slam_Winner_pivot.csv"
+  },
+  "width": "container",
+  "height": 280,
+  "encoding": {
+  "x": {
+      "field": "Year",
+      "type": "temporal",
+      "axis": {"grid": true},
+      "scale": {"domain": ["2002", "2024"]}
+    },
+  "y": {"field": "Player", "type": "nominal", "axis": {"title": ""}}
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "black",
+        "strokeWidth": 1
+      },
+      "encoding": {
+    "size": {
+      "field": "Slams",
+      "type": "quantitative",
+      "title": ["Grand Slam Wins Per Year"],
+      "legend": {
+        "orient": "bottom",
+        "clipHeight": 25,
+        "values": [1, 2, 3],
+        "format": "d",
+        "labelBaseline":"middle"
+      },
+      "scale": {"range": [0, 500]}
+    },
+    "color": {"field": "Player", "type": "nominal", "legend": null, "scale": {"domain": ["Novak Djokovic", "Rafael Nadal", "Roger Federer", "Other"],
+        "range": ["#63B4D1", "#F25757", "#142A8C", "lightgrey"]}},
+    "tooltip": [
+      {
+        "field": "Year",
+        "type": "temporal",
+        "title": "Year",
+        "timeUnit": "year"
+      },
+      {"field": "Slams", "type": "quantitative", "title": "Grand Slams"}
+    ]
+  }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "align": "right",
+        "dx": -5,
+        "dy": -35
+      },
+      "encoding": {
+      "text": {"condition": {"test":"year(datum.Year) == '2022' && datum.Player == 'Roger Federer'", "value": ["2022: Federer announdes his" ,"retirement from tennis"]}}, 
+      "color": {"value": "142A8C"}}
+    },
+    {
+      "mark": {
+        "type": "point",
+        "size": 200,
+        "shape": "M0,.5L.6,.8L.5,.1L1,-.3L.3,-.4L0,-1L-.3,-.4L-1,-.3L-.5,.1L-.6,.8L0,.5Z"
+      },
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "ranking"}],
+          "sort": [{"field": "Career Index", "order": "descending"}]
+        },
+        {"filter": "datum.ranking == 1"}
+      ],
+      "encoding": {
+        "color": {"value": "#142A8C"},
+        "opacity": {"condition": {"test": "year(datum.Year) == '2022' && datum.Player == 'Roger Federer'", "value": 1},
+          "value": 0}
+
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "align": "right",
+        "dx": -5,
+        "dy": -35
+      },
+      "encoding": {
+      "text": {"condition": {"test":"year(datum.Year) == '2023' && datum.Player == 'Rafael Nadal'", "value": ["2023: Nadal announces", "break due to injury"]}}, 
+      "color": {"value": "#F25757"}}
+    },
+    {
+      "mark": {
+        "type": "point",
+        "size": 200,
+        "shape": "M0,.5L.6,.8L.5,.1L1,-.3L.3,-.4L0,-1L-.3,-.4L-1,-.3L-.5,.1L-.6,.8L0,.5Z"
+      },
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "ranking"}],
+          "sort": [{"field": "Career Index", "order": "descending"}]
+        },
+        {"filter": "datum.ranking == 1"}
+      ],
+      "encoding": {
+        "color": {"value": "#F25757"},
+        "opacity": {"condition": {"test": "year(datum.Year) == '2023' && datum.Player == 'Rafael Nadal'", "value": 1},
+          "value": 0}
+
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "align": "right",
+        "dx": -5,
+        "dy": 25
+      },
+      "encoding": {
+      "text": {"condition": {"test":"year(datum.Year) == '2017' && datum.Player == 'Novak Djokovic'", "value": ["2017: Djokovic misses most", "of the season to injury"]}}, 
+      "color": {"value": "#63B4D1"}}
+    },
+    {
+      "mark": {
+        "type": "point",
+        "size": 200,
+        "shape": "M0,.5L.6,.8L.5,.1L1,-.3L.3,-.4L0,-1L-.3,-.4L-1,-.3L-.5,.1L-.6,.8L0,.5Z"
+      },
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "ranking"}],
+          "sort": [{"field": "Career Index", "order": "descending"}]
+        },
+        {"filter": "datum.ranking == 1"}
+      ],
+      "encoding": {
+        "color": {"value": "#63B4D1"},
+        "opacity": {"condition": {"test": "year(datum.Year) == '2017' && datum.Player == 'Novak Djokovic'", "value": 1},
+          "value": 0}
+
+      }
+    }
+  ]
+}

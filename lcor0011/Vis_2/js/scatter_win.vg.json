@@ -1,0 +1,169 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/feelthespeed/3179/main/Vis_2/data/Win_Loss_ALL.csv"
+  },
+  "width": "container",
+  "height": 300,
+  "params": [
+    {
+      "name": "titles_above",
+      "value": 65,
+      "bind": {
+        "input": "range",
+        "min": 5,
+        "max": 105,
+        "step": 5,
+        "name": "Minimum Career Titles: "
+      }
+    },
+    {
+      "name": "surface_select",
+      "value": "Overall",
+      "bind": {
+        "input": "select",
+        "options": ["Overall", "Clay", "Hard", "Grass"],
+        "labels": ["Overall", "Clay", "Hard", "Grass"],
+        "name": "Surface: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum['Career Titles'] > titles_above"},
+    {"filter": "datum['Cateogry'] == surface_select"}
+  ],
+  "layer": [
+    {
+      "mark": "point",
+      "params": [
+        {
+          "name": "player_selection",
+          "select": {"type": "point", "fields": ["Player"]},
+          "bind": "legend"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Career Loss", "type": "quantitative"},
+        "y": {"field": "Career Win", "type": "quantitative"},
+        "size": {"value": 100},
+        "strokeWidth": {"value": 3},
+        "opacity": {
+          "condition": {"param": "player_selection", "value": 0.9},
+          "value": 0.2
+        },
+        "color": {"field": "Player"},
+        "tooltip": [
+          {"field": "Player"},
+          {
+            "field": "Career Index",
+            "title": "Career Index (Wins/Matches Ratio)"
+          },
+          {"field": "Career Titles"},
+          {"field": "Career Win"},
+          {"field": "Career Loss"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "align": "left",
+        "dx": 20,
+        "dy": -10
+      },
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "ranking"}],
+          "sort": [{"field": "Career Index", "order": "descending"}]
+        },
+        {"filter": "datum.ranking == 1"},
+        {
+          "calculate": "'Best Career Index:; ' + datum['Player']",
+          "as": "text_annotation_raw"
+        },
+        {
+          "calculate": "split(datum.text_annotation_raw, ';')",
+          "as": "text_annotation"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Career Loss", "type": "quantitative"},
+        "y": {"field": "Career Win", "type": "quantitative"},
+        "text": {"field": "text_annotation"},
+        "color": {"value": "purple"},
+        "opacity": {
+          "condition": {"test": "datum['Player'] == 'Rafael Nadal' || datum['Player'] == 'Bill Tilden' || datum['Player'] == 'Roger Federer' ", "value": 0},
+          "value": 1
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "align": "left",
+        "dx": 20,
+        "dy": -10
+      },
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "ranking"}],
+          "sort": [{"field": "Career Index", "order": "descending"}]
+        },
+        {"filter": "datum.ranking == 1"},
+        {
+          "calculate": "'Best Career; Index:; ' + datum['Player']",
+          "as": "text_annotation_raw"
+        },
+        {
+          "calculate": "split(datum.text_annotation_raw, ';')",
+          "as": "text_annotation"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Career Loss", "type": "quantitative"},
+        "y": {"field": "Career Win", "type": "quantitative"},
+        "text": {"field": "text_annotation"},
+        "color": {"value": "purple"},
+        "opacity": {
+          "condition": {"test": "datum['Player'] == 'Rafael Nadal' || datum['Player'] == 'Bill Tilden' || datum['Player'] == 'Roger Federer' ", "value": 1},
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "size": 700,
+        "shape": "M0,.5L.6,.8L.5,.1L1,-.3L.3,-.4L0,-1L-.3,-.4L-1,-.3L-.5,.1L-.6,.8L0,.5Z"
+      },
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "ranking"}],
+          "sort": [{"field": "Career Index", "order": "descending"}]
+        },
+        {"filter": "datum.ranking == 1"}
+      ],
+      "encoding": {
+        "x": {
+          "field": "Career Loss",
+          "title": "Career Losses",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "y": {
+          "field": "Career Win",
+          "title": "Career Wins",
+          "type": "quantitative"
+        },
+        "color": {"value": "purple"},
+        "opacity": {"value": 0.8}
+      }
+    }
+  ]
+}
